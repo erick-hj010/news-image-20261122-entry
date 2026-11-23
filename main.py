@@ -35,7 +35,9 @@ def publish(source: Path, destination: Path) -> int:
     """Copy ``source`` to ``destination`` in fixed-size blocks.
 
     The destination's parent directory is created when it does not
-    exist yet. Returns the number of bytes copied.
+    exist yet. Returns the number of bytes copied. The copy is exact:
+    the bytes written are the bytes read, so the digest of the output
+    always matches the digest of the bundled image.
     """
     destination.parent.mkdir(parents=True, exist_ok=True)
     copied = 0
